@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='fav-icon.png') }}">
+    <title>ASCIIFY</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="desktop">
+        <header class="menu-bar">
+            <div class="menu-left">
+                <span class="apple-logo">🍎</span>
+                <span class="menu-name">ASCIIFY</span>
+                <span>File</span>
+                <span>Edit</span>
+                <span>View</span>
+                <span>Help</span>
+            </div>
+            <div class="menu-right">
+                <span>IMAGE PROCESSOR</span>
+            </div>
+        </header>
+        <main class="window">
+            <div class="window-titlebar">
+                <div class="title-decoration"></div>
+                <div class="window-title">
+                    ASCII Image Studio
+                </div>
+            </div>
+            <div class="window-content">
+                <section class="app-heading">
+                    <div>
+                        <h1>ASCIIFY</h1>
+                        <p class="subtitle">
+                            Transform your images into ASCII characters.
+                        </p>
+                    </div>
+                    <div class="system-status">
+                        <span class="status-light"></span>
+                        SYSTEM READY
+                    </div>
+                </section>
+                <section class="workspace">
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <span>01 — IMAGE INPUT</span>
+                            <span class="panel-number">INPUT_001</span>
+                        </div>
+                        <div class="panel-content">
+                            <div class="upload-area" id="upload-area">
+                                <input
+                                    type="file"
+                                    id="image-input"
+                                    accept="image/*"
+                                    hidden
+                                >
+                                <div id="upload-placeholder">
+                                    <div class="upload-icon">▧</div>
+                                    <h3>INSERT IMAGE</h3>
+                                    <p>
+                                        Drag and drop your image here
+                                    </p>
+                                    <span class="or-text">— OR —</span>
+                                    <button
+                                        class="mac-button"
+                                        id="browse-button"
+                                        type="button"
+                                    >
+                                        CHOOSE FILE
+                                    </button>
+                                    <p class="file-types">
+                                        JPG · PNG · WEBP · BMP
+                                    </p>
+                                </div>
+                                <div id="image-preview-container" hidden>
+                                    <img
+                                        id="image-preview"
+                                        alt="Uploaded image preview"
+                                    >
+                                    <div class="image-overlay">
+                                        IMAGE LOADED
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="image-information">
+                                <div>
+                                    <span class="info-label">FILENAME</span>
+                                    <span id="filename">NO FILE SELECTED</span>
+                                </div>
+                                <button
+                                    class="text-button"
+                                    id="remove-image"
+                                    disabled
+                                    type="button"
+                                >
+                                    REMOVE ×
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <span>02 — ASCII OUTPUT</span>
+                            <span class="panel-number">OUTPUT_001</span>
+                        </div>
+                        <div class="panel-content">
+                            <div class="ascii-screen" id="ascii-screen">
+                                <canvas id="ascii-canvas"></canvas>
+                                <div class="screen-placeholder" id="screen-placeholder">
+                                    <div class="screen-icon">▦</div>
+                                    <p>AWAITING IMAGE INPUT</p>
+                                    <span>OUTPUT DISPLAY OFFLINE</span>
+                                </div>
+                            </div>
+                            <div class="output-information">
+                                <span id="output-status">NO OUTPUT</span>
+                                <div class="zoom-controls">
+                                    <button id="zoom-out" disabled type="button">−</button>
+                                    <span id="zoom-level">100%</span>
+                                    <button id="zoom-in" disabled type="button">+</button>
+                                </div>
+                                <button
+                                    class="text-button"
+                                    id="fullscreen-button"
+                                    type="button"
+                                >
+                                    FULL SCREEN ↗
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="settings-panel">
+                    <div class="panel-heading">
+                        <span>03 — GENERATION SETTINGS</span>
+                        <span class="panel-number">CONFIG_001</span>
+                    </div>
+                    <div class="settings-content">
+                        <div class="setting-group text-setting">
+                            <label for="phrase">REPEATING TEXT</label>
+                            <input
+                                type="text"
+                                id="phrase"
+                                value="@$% \/++rf%# #1hdFR$ "
+                                maxlength="100"
+                            >
+                        </div>
+                        <div class="setting-group">
+                            <label for="color-mode">COLOR MODE</label>
+                            <select id="color-mode">
+                                <option value="monochrome">MONOCHROME</option>
+                                <option value="color">ORIGINAL COLORS</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="animation-settings">
+                        <div class="animation-label">
+                            <span>ANIMATION MODE</span>
+                            <span class="animation-type">
+                                FLOW
+                            </span>
+                        </div>
+                        <div class="animation-controls">
+                            <button id="play-button" class="mac-button" disabled type="button">
+                                ▶ PLAY
+                            </button>
+                            <button id="pause-button" class="mac-button" disabled type="button">
+                                ❚❚ PAUSE
+                            </button>
+                            <div class="speed-control">
+                                <label for="speed">FLOW SPEED</label>
+                                <input
+                                    type="range"
+                                    id="speed"
+                                    min="1"
+                                    max="10"
+                                    value="4"
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="bottom-actions">
+                    <div class="system-message">
+                        <span class="status-light"></span>
+                        <span id="system-message">
+                            READY FOR IMAGE INPUT
+                        </span>
+                    </div>
+                    <div class="action-buttons">
+                        <button
+                            class="mac-button"
+                            id="generate-button"
+                            disabled
+                            type="button"
+                        >
+                            GENERATE
+                        </button>
+                        <button
+                            class="mac-button export-button"
+                            id="export-png"
+                            disabled
+                            type="button"
+                        >
+                            EXPORT PNG
+                        </button>
+                        <button
+                            class="mac-button export-button"
+                            id="export-gif"
+                            disabled
+                            type="button"
+                        >
+                            EXPORT GIF
+                        </button>
+                    </div>
+                </section>
+
+
+                <footer class="window-footer">
+                    <span>VERSION 1.0.0</span>
+                </footer>
+            </div>
+        </main>
+    </div>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
