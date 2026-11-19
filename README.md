@@ -2,11 +2,7 @@
 
 An image to ASCII art generator with animated text effects and export functionality.
 
-## Live Demo
-
-Try ASCII.EXE here:
-
-[Launch ASCII.EXE](https://asciify-z72q.onrender.com/)
+## Live Demo | [ASCIIFY](https://asciify-z72q.onrender.com/)
 
 ## 🌿 How It Works
 
