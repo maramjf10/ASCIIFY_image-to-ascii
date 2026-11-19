@@ -2,6 +2,12 @@
 
 An image to ASCII art generator with animated text effects and export functionality.
 
+## Live Demo
+
+Try ASCII.EXE here:
+
+[Launch ASCII.EXE](https://asciify-z72q.onrender.com/)
+
 ## 🌿 How It Works
 
 Asciify processes uploaded images and converts their visual information into text-based artwork.
